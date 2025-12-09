@@ -14,8 +14,8 @@
         return finalGrade > 100 ? 100 : finalGrade;
     }
 
-    function calculateScholarship(grade, bonusPoints) {
-        let finalGrade = addBonus(grade, bonusPoints);
+    function calculateScholarship(grade, bonusPoints, bonusFunction) {
+        let finalGrade = bonusFunction(grade, bonusPoints);
         if (finalGrade >= 93) {
             return 2900;
         } else if (finalGrade >= 80) {
@@ -33,14 +33,18 @@
     } else if (isNaN(bonusPoints) || bonusPoints < 0) {
         document.write("<h2 style='color:red'>Кількість бонусних балів не може бути від'ємною</h2>");
     } else {
+        let scholarship = calculateScholarship(studentGrade, bonusPoints, addBonus);
         let finalGrade = addBonus(studentGrade, bonusPoints);
-        let scholarship = calculateScholarship(studentGrade, bonusPoints);
 
         document.write("<h2>Розрахунок стипендії</h2>");
         document.write("<p>Ваша базова оцінка: <b>", studentGrade, "</b></p>");
         document.write("<p>Бонусні бали: <b>", bonusPoints, "</b></p>");
         document.write("<p>Еквівалент бонусних балів: <b>", (bonusPoints * 0.5).toFixed(2), " простих балів</b></p>");
         document.write("<p>Оцінка з бонусом: <b>", finalGrade.toFixed(2), "</b></p>");
+
+        if (finalGrade === 100 && (studentGrade + bonusPoints * 0.5) > 100) {
+            document.write("<p style='color:orange'><i>* Оцінка обмежена максимумом 100 балів</i></p>");
+        }
 
         document.write("<p>Ваша стипендія: <b>", scholarship, " грн</b></p>");
     }
