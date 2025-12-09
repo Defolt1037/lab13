@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Завдання 7</title>
+</head>
+<body>
+<script>
+    "use strict";
+
+    let examDifficulty = parseFloat(prompt("Введіть рівень складності іспиту (1-10):", ""));
+    let userLevel = parseFloat(prompt("Введіть вашу оцінку своєї підготовки (1-10):", ""));
+
+    function analyzeDifficulty(examLevel, studentLevel) {
+        let difference = examLevel - studentLevel;
+
+        if (examLevel > 10) {
+            return "Неможлива складність!";
+        } else if (examLevel < 1) {
+            return "Дуже легкий іспит";
+        }
+
+        if (difference >= 5) {
+            return "Дуже складний іспит";
+        } else if (difference >= 3) {
+            return "Складний іспит";
+        } else if (difference >= 1) {
+            return "Трохи складний іспит";
+        } else if (difference >= -1) {
+            return "Відповідає вашому рівню";
+        } else if (difference >= -3) {
+            return "Легкий іспит";
+        } else {
+            return "Занадто легко для вас";
+        }
+    }
+
+    document.write("<h2>Аналіз складності іспиту</h2>");
+
+    document.write("<h3>Введені дані:</h3>");
+    document.write("<p>Рівень складності іспиту: <b>" + examDifficulty.valueOf() + "</b></p>");
+    document.write("<p>Ваш рівень підготовки: <b>" + userLevel.valueOf() + "</b></p>");
+
+    document.write("<h3>Результат аналізу:</h3>");
+    let result = analyzeDifficulty(examDifficulty, userLevel);
+    document.write("<p><b>" + result + "</b></p>");
+
+    document.write("<h3>Демонстрація функції як змінної:</h3>");
+    document.write("<p style='font-size: smaller'>Значення змінної analyzeDifficulty:<BR>" + analyzeDifficulty.valueOf() + "</p>");
+</script>
+</body>
+</html>
