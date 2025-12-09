@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Завдання 6</title>
+</head>
+<body>
+<script>
+    "use strict";
+
+    function addBonus(grade, bonusPoints) {
+        let bonusValue = bonusPoints * 0.5;
+        let finalGrade = grade + bonusValue;
+        return finalGrade > 100 ? 100 : finalGrade;
+    }
+
+    function calculateScholarship(grade, bonusPoints) {
+        let finalGrade = addBonus(grade, bonusPoints);
+        if (finalGrade >= 93) {
+            return 2900;
+        } else if (finalGrade >= 80) {
+            return 2000;
+        } else {
+            return 0;
+        }
+    }
+
+    let studentGrade = parseFloat(prompt("Введіть кількість отриманих балів (0-100):", ""));
+    let bonusPoints = parseFloat(prompt("Введіть кількість бонусних балів:", ""));
+
+    if (isNaN(studentGrade) || studentGrade < 0 || studentGrade > 100) {
+        document.write("<h2 style='color:red'>Кількість балів повинна бути від 0 до 100</h2>");
+    } else if (isNaN(bonusPoints) || bonusPoints < 0) {
+        document.write("<h2 style='color:red'>Кількість бонусних балів не може бути від'ємною</h2>");
+    } else {
+        let finalGrade = addBonus(studentGrade, bonusPoints);
+        let scholarship = calculateScholarship(studentGrade, bonusPoints);
+
+        document.write("<h2>Розрахунок стипендії</h2>");
+        document.write("<p>Ваша базова оцінка: <b>", studentGrade, "</b></p>");
+        document.write("<p>Бонусні бали: <b>", bonusPoints, "</b></p>");
+        document.write("<p>Еквівалент бонусних балів: <b>", (bonusPoints * 0.5).toFixed(2), " простих балів</b></p>");
+        document.write("<p>Оцінка з бонусом: <b>", finalGrade.toFixed(2), "</b></p>");
+
+        document.write("<p>Ваша стипендія: <b>", scholarship, " грн</b></p>");
+    }
+</script>
+</body>
+</html>

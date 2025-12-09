@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Завдання 4</title>
+</head>
+<body>
+<script>
+    "use strict";
+    function CalculateAverage(grade1, grade2) {
+        return (grade1 + grade2) / 2;
+    }
+
+    document.write("<h2>Калькулятор середнього балу</h2>");
+    document.write("<p>Середній бал між 85 та 90: <b>", CalculateAverage(85, 90), "</b></p>");
+
+    let ODBGrade = 78;
+    let OSGrade = 92;
+    let averageGrade = CalculateAverage(ODBGrade, OSGrade);
+    document.write("<p>ОБД: ", ODBGrade, ", ОС: ", OSGrade);
+    document.write("<br>Середній бал: <b>", averageGrade, "</b></p>");
+</script>
+</body>
+</html>

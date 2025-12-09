@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Завдання 8</title>
+</head>
+<body>
+<script>
+    "use strict";
+
+    function calculateAverage(subject1, subject2) {
+
+        let sum = 0;
+
+        for (let i = 0; i < arguments.length; i++) {
+            sum += arguments[i];
+        }
+
+        return sum / arguments.length;
+    }
+
+    document.write("<h2>Розрахунок середнього балу за семестр</h2>");
+
+    let subjectsCount = parseInt(prompt("Скільки предметів ви здавали?", ""));
+
+    if (isNaN(subjectsCount) || subjectsCount <= 0) {
+        document.write("<p style='color:red'> Помилка введення!</p>");
+    } else {
+        let grades = [];
+
+        // Збір оцінок
+        for (let i = 0; i < subjectsCount; i++) {
+            let grade = parseFloat(prompt(`Оцінка за предмет ${i + 1} (0-100):`, ""));
+            if (!isNaN(grade) && grade >= 0 && grade <= 100) {
+                grades.push(grade);
+            } else {
+                alert("Некоректна оцінка!");
+                grades.push(0);
+            }
+        }
+
+        document.write("<h3>Ваші оцінки:</h3>");
+        document.write(grades.join(", "));
+
+        let average = calculateAverage(...grades);
+
+        document.write("<h3>Результати:</h3>");
+        document.write("<p>Кількість предметів: <b>" + grades.length + "</b></p>");
+        document.write("<p>Середній бал: <b>" + average.toFixed(2) + "</b></p>");
+
+        document.write("<h3>Попередні розрахунки студентів:</h3>");
+        document.write("<p><b>2 предмети (85, 90):</b> Середній = " + calculateAverage(85, 90).toFixed(2) + "</p>");
+        document.write("<p><b>3 предмети (75, 88, 92):</b> Середній = " + calculateAverage(75, 88, 92).toFixed(2) + "</p>");
+        document.write("<p><b>5 предметів (80, 85, 90, 75, 95):</b> Середній = " + calculateAverage(80, 85, 90, 75, 95).toFixed(2) + "</p>");
+
+        document.write("</div>");
+        document.write("</div>");
+    }
+</script>
+</body>
+</html>
